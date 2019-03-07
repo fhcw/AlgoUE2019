@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 from argparse import ArgumentParser
-from datetime import datetime
 
 def Main():
     parser = ArgumentParser(prog="Fibonacci Sequence Calculator")
@@ -11,23 +10,27 @@ def Main():
 
     arguments = parser.parse_args()
 
-    numberOfSteps = arguments.n[0] + 1
+    numberOfSteps = arguments.n[0]
     displayAllValues = arguments.all
+    listResults = []
 
-    startTime = datetime.now()
-    result = Fibonacci_Generator(numberOfSteps)
-    Display_Result(result, displayAllValues)
-    endTime = datetime.now()
+    for i in range (0, numberOfSteps + 1):
+        listResults.append(i)
 
-    print("Runtime: ", endTime.microsecond - startTime.microsecond)
+    Fibonacci_Generator(numberOfSteps, listResults)
+    Display_Result(listResults, displayAllValues)
 
-def Fibonacci_Generator(numberOfSteps):
-    result_list = [1, 1]    
 
-    for i in range(2, numberOfSteps):
-        result_list.append(result_list[i-2] + result_list[i-1])
 
-    return result_list
+def Fibonacci_Generator(numberOfSteps, arr=[]):
+    if numberOfSteps == 0:
+        return 0 
+    elif numberOfSteps == 1:
+        return 1
+    else:
+        result = Fibonacci_Generator(numberOfSteps - 1, arr) + Fibonacci_Generator(numberOfSteps - 2, arr)
+        arr[numberOfSteps] = result
+        return result
 
 
 
@@ -36,7 +39,8 @@ def Display_Result(result, displayAllValues):
         print(result[-1])
     else:
         for value in result:
-            print(value)
+            print(value, end=' ')
+        print()
 
 
 

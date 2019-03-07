@@ -1,10 +1,6 @@
 #!/usr/bin/python3
 
-## TODO: --all funktioniert noch nicht, weil keine Liste von Fibonacci_Generator() zurückgegeben wird,
-## sondern nur ein int.
-
 from argparse import ArgumentParser
-import cProfile
 
 def Main():
     parser = ArgumentParser(prog="Fibonacci Sequence Calculator")
@@ -14,30 +10,32 @@ def Main():
 
     arguments = parser.parse_args()
 
-    numberOfSteps = arguments.n[0] + 1
+    numberOfSteps = arguments.n[0]
     displayAllValues = arguments.all
 
     result = Fibonacci_Generator(numberOfSteps)
-
     Display_Result(result, displayAllValues)
 
 
+
 def Fibonacci_Generator(numberOfSteps):
-    if numberOfSteps == 0:
-        return 0
-    elif numberOfSteps == 1:
-        return 1
-    else:
-        return Fibonacci_Generator(numberOfSteps - 1) + Fibonacci_Generator(numberOfSteps - 2)
+    result_list = [1, 1]    
+
+    for i in range(2, numberOfSteps):
+        result_list.append(result_list[i-2] + result_list[i-1])
+
+    return result_list
 
 
 
 def Display_Result(result, displayAllValues):
     if displayAllValues == False:
-        print(result)
+        print("Result: ", result[-1], end = '')
     else:
+        print("Result: ", end = '')
         for value in result:
-            print(value)
+            print(value, end = ', ')
+    print()
 
 
 
