@@ -1,0 +1,6 @@
+#!/bin/bash
+for ((i=1;i <=25;i++))
+do
+    echo $i
+    time -p ./lukhuber-TowersOfHanoi.py -n $i > lukhuber-TowersOfHanoi.out 2> lukhuber-TowersOfHanoi.err
+done
