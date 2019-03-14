@@ -13,7 +13,9 @@ to STDERR upon finishing the computation. Allow the user to obtain some informat
 
 *` $githubusername-TowersOfHanoi.$suffix -n [--help]`
 
-Measure the runtime of your tool, ensuring that STDOUT is redirected to a
+---
+
+Once you are done with implementing the above tool you should measure the runtime within your shell. Ensure that STDOUT is redirected to a
 file rather than displayed via the console (which would unnecessarily blow
 up runtime). You might employ the concept of subshells to get this done.
 
