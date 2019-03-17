@@ -22,5 +22,7 @@ up runtime). You might employ the concept of subshells to get this done.
 Plot the runtime of your program (in seconds) vs size of the Hanoi puzzle and create a PDF graph. Your pull request should include the following files:
 
 * your program
-* A file containing STDOUT of your program up to at least n=25. The name of this file should be `$githubusername-TowersOfHanoi.out`
+* A gzipped (!) file containing STDOUT of your program up to at least n=25. The name of this file should be `$githubusername-TowersOfHanoi.out`
 * a PDF plot of runtime vs n named `$githubusername-TowersOfHanoi_runtime.pdf`
+
+(N.B.: gzip is not the same as zip)
