@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <ctime>
+#include <typeinfo>
 
 using namespace std;
 
@@ -55,8 +56,17 @@ int main() {
     
     for (int c = 0; c < 90; c++) {
         if (Angabe[c] == '.') {
-            int temporary = Angabe[c-1] + Angabe[c] + Angabe[c+1] + Angabe[c+2];
-            cout << temporary << endl;
+            char ch1 = Angabe[c-1];
+            char ch2 = Angabe[c];
+            char ch3 = Angabe[c+1];
+            char ch4 = Angabe[c+2];
+            string xxx;
+            xxx += ch1;
+            xxx += ch2; 
+            xxx += ch3;
+            xxx += ch4;
+            float yyy = stof(xxx);
+            cout << yyy << endl;
         }
     }
 }
