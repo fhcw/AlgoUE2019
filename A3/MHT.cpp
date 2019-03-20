@@ -25,45 +25,38 @@ int main() {
     
     read_in();
     // groesse rausfinden
-    string character = "-";
+    
     int number_values_matrix1 = 0;
     int number_rows_matrix1 = 0;
-    
-    for (int i = 0; i < Angabe.length(); i++) {  // 45 = -
-
-        if (Angabe[i] == 46) {
+        
+    for (int k = 0; k < Angabe.length(); k++) {  // 45 = -, 46 = .
+        if (Angabe[k] == 46) {
             number_values_matrix1 += 1;
         } 
-        if (Angabe[i] == '\n') {
+        if (Angabe[k] == '\n') {
             number_rows_matrix1 += 1;
         }
-        if (Angabe[i] == '-') {
+        if (Angabe[k] == '-') {
             break;
         }
     }
     number_rows_matrix1 -= 1;
     int number_columns_matrix1 = number_values_matrix1 / number_rows_matrix1;
 
-    cout << "values: " << number_values_matrix1 << " and rows: " << number_rows_matrix1 << " and columns: " << number_columns_matrix1 << endl;
-    cout << Angabe << endl;
-
     int number_values_matrix2 = number_values_matrix1;
     int number_rows_matrix2 = number_rows_matrix1 + 1;
     int number_columns_matrix2 = number_columns_matrix1 - 1;
 
-    cout << "values: " << number_values_matrix2 << " and rows: " << number_rows_matrix2 << " and columns: " << number_columns_matrix2 << endl;    
-    /*
-    // matrix1 und matrix2 definieren
-    float i;
-    float j;
-    matrix1[][];
+    // matrix1 und matrix2 definieren {}  []
 
-    char = 0;
-    while (char != 46) {   // 46 = .
-        continue;
-        char++;
-        if (char == 46) {
-            matrix[0][0] = 
+    float matrix1[number_rows_matrix1][number_columns_matrix1];
+    float matrix2[number_rows_matrix2][number_columns_matrix2];
+    // matrix 1
+    
+    for (int c = 0; c < 90; c++) {
+        if (Eingabe[c] == ".") {
+            string temporary = Eingabe[c-1], Eingabe[c], Eingabe[c+1], Eingabe[c+2];
+            
         }
-    } */
+    }
 }
