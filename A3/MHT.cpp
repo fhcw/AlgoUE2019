@@ -26,22 +26,32 @@ int main() {
     read_in();
     // groesse rausfinden
     string character = "-";
-    int count_points = 0;
-    int count_lines = 0;
-
+    int number_values_matrix1 = 0;
+    int number_rows_matrix1 = 0;
+    
     for (int i = 0; i < Angabe.length(); i++) {  // 45 = -
 
         if (Angabe[i] == 46) {
-            count_points += 1;
+            number_values_matrix1 += 1;
         } 
         if (Angabe[i] == '\n') {
-            count_lines += 1;
+            number_rows_matrix1 += 1;
         }
-        
+        if (Angabe[i] == '-') {
+            break;
+        }
     }
-    cout << "points: " << count_points << " and lines: " << count_lines << endl;
-    cout << Angabe.length() << endl;
+    number_rows_matrix1 -= 1;
+    int number_columns_matrix1 = number_values_matrix1 / number_rows_matrix1;
+
+    cout << "values: " << number_values_matrix1 << " and rows: " << number_rows_matrix1 << " and columns: " << number_columns_matrix1 << endl;
     cout << Angabe << endl;
+
+    int number_values_matrix2 = number_values_matrix1;
+    int number_rows_matrix2 = number_rows_matrix1 + 1;
+    int number_columns_matrix2 = number_columns_matrix1 - 1;
+
+    cout << "values: " << number_values_matrix2 << " and rows: " << number_rows_matrix2 << " and columns: " << number_columns_matrix2 << endl;    
     /*
     // matrix1 und matrix2 definieren
     float i;
