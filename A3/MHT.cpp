@@ -54,9 +54,9 @@ int main() {
     // matrix 1
     
     for (int c = 0; c < 90; c++) {
-        if (Eingabe[c] == ".") {
-            string temporary = Eingabe[c-1], Eingabe[c], Eingabe[c+1], Eingabe[c+2];
-            
+        if (Angabe[c] == '.') {
+            int temporary = Angabe[c-1] + Angabe[c] + Angabe[c+1] + Angabe[c+2];
+            cout << temporary << endl;
         }
     }
 }
