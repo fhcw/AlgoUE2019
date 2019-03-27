@@ -9,6 +9,7 @@
 using namespace std;
 
 string read_in(string filename);
+string Angabe = read_in("rmHV_10_12");
 
 class Matrix {
     private:
@@ -27,6 +28,9 @@ class Matrix {
         int getZeilenanz() {
             return zeilenanz;
         }
+        float getMatrixValue(int x, int y) {
+            return matrix_values[y * spaltenanz + x];
+        }
 
         void setZeilenanz(int za) {
             zeilenanz = za;
@@ -39,6 +43,9 @@ class Matrix {
         }
         void setDimensions() {
             matrix_values = new float[zeilenanz * spaltenanz];
+        }
+        void setMatrixValue(int x, int y, float value) {
+            matrix_values[y * spaltenanz + x] = value;
         }
 
         void dimensions_matrix1(string Angabe) {
@@ -65,13 +72,9 @@ class Matrix {
         }
 
         void dimensions_matrix2(Matrix m) {
-            //int number_rows_matrix2 = 
-            //int number_columns_matrix2 = 
-
             spaltenanz = m.getSpaltenanz() - 1;
             zeilenanz = m.getZeilenanz() + 1;
-           
-    
+            matrix_values = new float[zeilenanz * spaltenanz];    
         }
 
 };
@@ -90,30 +93,19 @@ string read_in(string filename) {
 int main() { 
 
     Matrix m1;
-    m1.dimensions_matrix1(read_in("rmHV_10_12"));
-   
-    cout << "Matrix 1" << endl;
-    cout << "Spaltenanz: " << m1.getSpaltenanz() << " und Reihenanz: " << m1.getZeilenanz() << endl;
-
+    m1.dimensions_matrix1(read_in("rmHV_10_12"));   
+    //cout << "Matrix 1" << endl;
+    //cout << "Spaltenanz: " << m1.getSpaltenanz() << " und Reihenanz: " << m1.getZeilenanz() << endl;
 
     Matrix m2;
     m2.dimensions_matrix2(m1);
-
-    cout << "Matrix 2" << endl;
-    //cout << "Spalten: " << m2.dimensions_matrix2(m1).spaltenanz << " und Reihen: " << m2.dimensions_matrix2(m1).zeilenanz << endl;
-    cout << "Spalten: " << m2.getSpaltenanz() << " und Reihen: " << m2.getZeilenanz() << endl;
+    //cout << "Matrix 2" << endl;
+    //cout << "Spalten: " << m2.getSpaltenanz() << " und Reihen: " << m2.getZeilenanz() << endl;
   
-       /*
-
-    // matrix1 und matrix2 deklarieren
-    float matrix1[number_rows_matrix1][number_columns_matrix1];
-    float matrix2[number_rows_matrix2][number_columns_matrix2]; 
-    
-    // matrix 1   funktion draus machen
-
+       
     int cursor = 0;
-    for (int y = 0; y < number_rows_matrix1; y++) {
-        for (int x = 0; x < number_columns_matrix1; x++) {
+    for (int y = 0; y < m1.getZeilenanz(); y++) {
+        for (int x = 0; x < m1.getSpaltenanz(); x++) {
             while (Angabe[cursor] != 46) {
                 cursor ++;                
             }
@@ -128,9 +120,9 @@ int main() {
             value += ch3;
             value += ch4;
             float float_value = stof(value);
-            matrix1[x][y] = float_value;   // m1.setMatrixValues(x, y, float_value);
+            m1.setMatrixValue(x,y,float_value);   // m1.setMatrixValues(x, y, float_value);
             cursor ++;   
         }
-    } */
+    } cout << m1.getMatrixValue(3,2) << endl;
     
 }
