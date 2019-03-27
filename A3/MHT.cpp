@@ -10,8 +10,6 @@ using namespace std;
 
 string read_in(string filename);
 
-//string Angabe = read_in("rmHV_10_12");
-
 class Matrix {
     private:
         int werteanz;
@@ -33,7 +31,6 @@ class Matrix {
         void setZeilenanz(int za) {
             zeilenanz = za;
         }
-
         void setSpaltenanz(int sa) {
             spaltenanz = sa;
         }
@@ -43,7 +40,7 @@ class Matrix {
         void setDimensions() {
             matrix_values = new float[zeilenanz * spaltenanz];
         }
-        // Funktion vom Typ Matrix, die eine Matrix zurückgibt. hier werden zeilenanz etc berechnet....
+
         void dimensions_matrix1(string Angabe) {
 
             int number_values_matrix1 = 0;
@@ -61,27 +58,26 @@ class Matrix {
                 }
             }
             number_rows_matrix1 -= 1;
-            int number_columns_matrix1 = number_values_matrix1 / number_rows_matrix1; // spalten = Werte / Reihen
             
-            //Matrix m1;
-        
-            //m1.setSpaltenanz(number_columns_matrix1);
-            //m1.setZeilenanz(number_rows_matrix1);
-            //m1.setDimensions();
-            spaltenanz = number_columns_matrix1;
+            spaltenanz = number_values_matrix1 / number_rows_matrix1;   // spalten = Werte / Reihen        
             zeilenanz = number_rows_matrix1;
             matrix_values = new float[zeilenanz * spaltenanz];
+        }
 
-            //return m1;
+        void dimensions_matrix2(Matrix m) {
+            //int number_rows_matrix2 = 
+            //int number_columns_matrix2 = 
+
+            spaltenanz = m.getSpaltenanz() - 1;
+            zeilenanz = m.getZeilenanz() + 1;
+           
+    
         }
 
 };
-// string eingabe;
-    // cin >> eingabe;
-    // string Angabe;
-    // Angabe = read_in(eingabe);
-string read_in(string filename) { // string read_in(string filename) {
-        ifstream input_file (filename); //  ifstream input_file (filename);
+
+string read_in(string filename) {
+        ifstream input_file (filename); 
         
         stringstream buffer;
         buffer << input_file.rdbuf();
@@ -91,42 +87,21 @@ string read_in(string filename) { // string read_in(string filename) {
        
 }
 
-
-
-
-Matrix dimensions_matrix2(Matrix m) {
-    int number_rows_matrix2 = m.getZeilenanz() + 1;
-    int number_columns_matrix2 = m.getSpaltenanz() - 1;
-
-    Matrix m2;
-    m2.setZeilenanz(number_rows_matrix2);
-    m2.setSpaltenanz(number_columns_matrix2);
-    
-    return m2;
-}
-
-
 int main() { 
 
     Matrix m1;
     m1.dimensions_matrix1(read_in("rmHV_10_12"));
-
-    //cout << m1.getSpaltenanz() << endl;
-    //cout << m1.getZeilenanz();
-    
-
-    m1.getSpaltenanz();
-    m1.getZeilenanz();    
+   
     cout << "Matrix 1" << endl;
-    //cout << "Spaltenanz: " << dimensions_matrix1(Angabe).getSpaltenanz() << "und Reihenanz: " << dimensions_matrix1(Angabe).getZeilenanz() << endl;
+    cout << "Spaltenanz: " << m1.getSpaltenanz() << " und Reihenanz: " << m1.getZeilenanz() << endl;
 
 
     Matrix m2;
-    m2.getSpaltenanz();
-    m2.getZeilenanz();
+    m2.dimensions_matrix2(m1);
 
     cout << "Matrix 2" << endl;
-    cout << "Spalten: " << dimensions_matrix2(m1).getSpaltenanz() << " und Reihen: " << dimensions_matrix2(m1).getZeilenanz() << endl;
+    //cout << "Spalten: " << m2.dimensions_matrix2(m1).spaltenanz << " und Reihen: " << m2.dimensions_matrix2(m1).zeilenanz << endl;
+    cout << "Spalten: " << m2.getSpaltenanz() << " und Reihen: " << m2.getZeilenanz() << endl;
   
        /*
 
