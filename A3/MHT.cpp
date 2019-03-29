@@ -18,7 +18,6 @@ class Matrix {
         int zeilenanz;
         float* matrix_values;
         float* matrix_nodes;
-        float* knoten_values;
        
     public:
         int getWerteanz() {
@@ -30,17 +29,9 @@ class Matrix {
         int getZeilenanz() {
             return zeilenanz;
         }
-        float getMatrixValue(int x, int y) {
+        float getValue(int x, int y) {
             return matrix_values[y * spaltenanz + x];
-        } 
-        float getMatrixNode(int x, int y) {
-            return matrix_nodes[y * spaltenanz + x];
         }
-   
-        float getknotenValue(int x, int y) {
-            return knoten_values[y * spaltenanz + x];
-        }
-
 
         void setZeilenanz(int za) {
             zeilenanz = za;
@@ -54,16 +45,10 @@ class Matrix {
         void setDimensions() {
             matrix_values = new float[zeilenanz * spaltenanz];
         }
-        void setMatrixValue(int x, int y, float value) {
+        void setValue(int x, int y, float value) {
             matrix_values[y * spaltenanz + x] = value;
-        }   
-        void setMatrixNodes(int x, int y, float node_sum) {
-            matrix_nodes[y * spaltenanz + x] = node_sum;
-        }
-        void setknotenValue(int x, int y, float value) {
-            knoten_values[y * spaltenanz + x] = value;    
+        }       
          
-        }
         void dimensions_matrix_down(string Angabe) {
 
             int number_values_matrix1 = 0;
@@ -126,7 +111,7 @@ int fill_matrix(Matrix m, int &cursor, string Angabe) {
             value += ch3;
             value += ch4;
             float float_value = stof(value);
-            m.setMatrixValue(x,y,float_value);
+            m.setValue(x,y,float_value);
             cursor ++;   
         }
     }
@@ -155,17 +140,16 @@ int main() {
     //cout << right_edges.getMatrixValue(7,7) << endl; // letzte Koordinate bei 
     //cout << "cursor: " << cursor << endl; // cursor am schluss bei 1306
 
-    cout << ":" << right_edges.getMatrixValue(0,0) << endl;
-    
     Matrix knoten;
     knoten.setSpaltenanz(down_edges.getSpaltenanz());
     knoten.setZeilenanz(right_edges.getZeilenanz());
     knoten.setDimensions();
-    cout << " spalten: " << knoten.getSpaltenanz() << " und Zeilen: " << knoten.getZeilenanz() << endl;
+    //cout << " spalten: " << knoten.getSpaltenanz() << " und Zeilen: " << knoten.getZeilenanz() << endl;
 
 
     int value = 0;
-    knoten.getknotenValue(0,0);
+    knoten.setValue(1,1, 0.5);
+    cout << knoten.getValue(1,1);
     //cout << knoten.getknotenValue(1,1);
     /*
     for (int y = 1; y < knoten.getSpaltenanz(); y++) {  //
