@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import sys
-from math import sqrt
 
 def Main():
     down = downValues()
