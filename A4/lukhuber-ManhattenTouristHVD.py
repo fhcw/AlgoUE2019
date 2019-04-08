@@ -1,0 +1,135 @@
+#!/usr/bin/python3
+
+import sys
+
+def Main():
+    down = downValues()
+    right = rightValues()
+    diag = diagValues()
+
+    if (down == "invalid" or right == "invalid" or diag == "invalid"):
+        print("Input invalid. Program aborted!")
+        return 100
+
+    matrix = [[0 for x in range(len(right))] for y in range(len(right))] 
+
+    fillMatrix(matrix, down, right, diag)
+
+    print("Result: ", matrix[-1][-1])
+
+    # Uncomment this, when resulting matrix should be printed.
+    #for i, v in enumerate(matrix):
+    #    print(matrix[i])
+
+    # DEBUG
+    #print("Down")
+    #print(len(down), "x", (len(down[0])))
+    #print("Right")
+    #print(len(right), "x", (len(right[0])))
+    #print("Diag:")
+    #print(len(diag), "x", len(diag[0]))
+
+def downValues():
+    dValues = []
+
+    for line in sys.stdin:
+        if (line[0] == 'G'):
+            continue
+        line = line.strip()
+        if (line == "---"):
+            break
+        temp = line.rsplit("   ")
+        for i, v in enumerate(temp):
+            temp[i] = float(temp[i])
+        dValues.append(temp)
+    
+    dValues_len = len(dValues)
+
+    # Check if (N-1) * N is given
+    for i, v in enumerate(dValues):
+        if (len(dValues[i]) != dValues_len + 1):
+            return "invalid"
+
+    return dValues
+
+def rightValues():
+    rValues = []
+
+    for line in sys.stdin:
+        if(line[0:6] == 'G_diag'):
+            break
+        if (line[0] == 'G'):
+            continue
+        line = line.strip()
+        if (line == "---"):
+            #temp.clear()
+            continue
+        temp = line.rsplit("   ")
+        for i, v in enumerate(temp):
+            temp[i] = float(temp[i])
+        rValues.append(temp)
+
+    rValues_len = len(rValues)
+
+    # Check if N * (N-1) is given
+    for i, v in enumerate(rValues):
+        if (len(rValues[i]) + 1 != rValues_len):
+            return "invalid"
+
+    return rValues
+
+def diagValues():
+    dValues = []
+
+    for line in sys.stdin:
+        if (line[0] == 'G'):
+            continue
+        line = line.strip()
+        if (line == "---"):
+            #temp.clear()
+            continue
+        temp = line.rsplit("   ")
+        for i, v in enumerate(temp):
+            temp[i] = float(temp[i])
+        dValues.append(temp)
+
+    dValues_len = len(dValues)
+
+    # Check if (N-1) * (N-1) is given
+    for i, v in enumerate(dValues):
+        if (len(dValues[i]) != dValues_len):
+            return "invalid"
+
+    return dValues
+
+def fillFirstRow(matrix, right):
+    matrix[0][1] = matrix[0][0] + right[0][0]
+    
+    for i in range(2,len(matrix[0])):
+        matrix[0][i] = matrix[0][i-1] + right[0][i-1]
+
+def fillFirstCol(matrix, down):
+    matrix[1][0] = matrix[0][0] + down[0][0]
+
+    for i in range(2, len(matrix)):
+        matrix[i][0] = matrix[i-1][0] + down[i-1][0]
+
+def fillMatrix(matrix, down, right, diag):
+    fillFirstRow(matrix, right)
+    fillFirstCol(matrix, down)
+
+    for row in range(1, len(matrix)):
+        for col in range(1, len(matrix[0])):
+            downValue = round(matrix[row - 1][col] + down[row - 1][col], 2)
+            rightValue = round(matrix[row][col - 1] + right[row][col - 1], 2)
+            diagValue = round(matrix[row - 1][col - 1] + diag[row - 1][col - 1], 2)
+
+            if(downValue >= rightValue and downValue >= diagValue):
+                matrix[row][col] = downValue
+            if(rightValue >= downValue and rightValue >= diagValue):
+                matrix[row][col] = rightValue
+            if(diagValue >= rightValue and diagValue >= downValue):
+                matrix[row][col] = diagValue
+
+if __name__ == "__main__":
+    Main()
