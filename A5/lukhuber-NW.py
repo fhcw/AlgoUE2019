@@ -297,7 +297,8 @@ class matrix():
 
 def initArguments():
     parser = argparse.ArgumentParser(prog='lukhuber-NW.py', description='Aligns two different DNA sequences \
-        Requires an input in form of a multi-fasta file via STDIN')
+        Requires an input in form of a multi-fasta file via STDIN. The program writes the final score to STDERR, \
+        if STDERR is piped into a file at program call.')
 
     parser.add_argument('--match', dest = 'match', default = 1, type = int, help = 'Scoring value for a match. Default = +1')
     parser.add_argument('--mismatch', dest = 'mismatch', default = -1, type = int, help = 'Scoring value for a mismatch. Default = -1')
